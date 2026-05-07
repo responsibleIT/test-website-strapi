@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_layout_sections",
+  "info": {
+    "displayName": "Section"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "hero, ",
+        "text, ",
+        "cta, ",
+        "gallery"
+      ]
+    },
+    "heading": {
+      "type": "string"
+    },
+    "body": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "buttons": {
+      "type": "component",
+      "component": "component.buttons",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

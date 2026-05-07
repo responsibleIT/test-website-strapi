@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_component_buttons",
+  "info": {
+    "displayName": "Buttons"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "style": {
+      "type": "enumeration",
+      "enum": [
+        "primary, ",
+        "secondary,",
+        "outline"
+      ]
+    },
+    "openInNewTab": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}
