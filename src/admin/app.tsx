@@ -11,7 +11,7 @@ const RebuildPage: React.FC = () => {
   useEffect(() => {
     const trigger = async () => {
       try {
-        await post('/rebuild');
+        await post('/api/rebuild');
         setStatus('done');
       } catch (e) {
         console.error('Rebuild failed', e);
