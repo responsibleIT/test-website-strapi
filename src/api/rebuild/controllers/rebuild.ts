@@ -1,12 +1,19 @@
 export default {
   async trigger(ctx: any) {
-    const webhookUrl = `${process.env.COOLIFY_DEPLOY_WEBHOOK}`;
+    const webhookUrl = process.env.COOLIFY_DEPLOY_WEBHOOK;
     if (!webhookUrl) {
       return ctx.badRequest('COOLIFY_DEPLOY_WEBHOOK environment variable is not defined.');
     }
     try {
-      const res = await fetch(webhookUrl.replace(/\|/g, '%7C'), { 
-        method: 'GET' 
+      const url = new URL(webhookUrl);
+      const token = url.searchParams.get('token');
+      url.searchParams.delete('token');
+
+      const res = await fetch(url.toString(), {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       if (!res.ok) {
         const errorText = await res.text();
