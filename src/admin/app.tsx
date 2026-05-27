@@ -1,35 +1,33 @@
 import React, { useEffect, useState } from 'react';
+import { useFetchClient } from '@strapi/strapi/admin';
 import type { StrapiApp } from '@strapi/strapi/admin';
 
-type Status = 'idle' | 'loading' | 'done' | 'error';
+type Status = 'loading' | 'done' | 'error';
 
 const RebuildPage: React.FC = () => {
   const [status, setStatus] = useState<Status>('loading');
+  const { post } = useFetchClient();
 
   useEffect(() => {
     const trigger = async () => {
       try {
-        const res = await fetch('/api/rebuild', { method: 'POST' });
-        if (!res.ok) throw new Error('Request failed');
+        await post('/rebuild');
         setStatus('done');
       } catch (e) {
         console.error('Rebuild failed', e);
         setStatus('error');
       }
     };
-
     trigger();
   }, []);
 
   const message: Record<Status, string> = {
-    idle: '',
     loading: 'Triggering rebuild…',
     done: 'Rebuild triggered successfully.',
     error: 'Rebuild failed – check server logs.',
   };
 
   const color: Record<Status, string> = {
-    idle: '#666',
     loading: '#666',
     done: '#328048',
     error: '#ee5e52',
