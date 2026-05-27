@@ -3,9 +3,10 @@ export default {
     {
       method: 'POST',
       path: '/rebuild',
-      handler: 'api::rebuild.rebuild.trigger',
+      handler: 'rebuild.trigger',
       config: {
-        policies: ['admin::isAuthenticatedAdmin'],
+        auth: false,
+        policies: [],
       },
     },
   ],
