@@ -524,6 +524,42 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPartnerPartner extends Struct.CollectionTypeSchema {
+  collectionName: 'partners';
+  info: {
+    displayName: 'Partners';
+    pluralName: 'partners';
+    singularName: 'partner';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::partner.partner'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    research_detail_pages: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::research-detail-page.research-detail-page'
+    >;
+    student_detail_page: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::student-detail-page.student-detail-page'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiResearchDetailPageResearchDetailPage
   extends Struct.CollectionTypeSchema {
   collectionName: 'research_detail_pages';
@@ -554,6 +590,7 @@ export interface ApiResearchDetailPageResearchDetailPage
     ProjectTitle: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
+    partners: Schema.Attribute.Relation<'manyToMany', 'api::partner.partner'>;
     publishedAt: Schema.Attribute.DateTime;
     Regeling: Schema.Attribute.String;
     Slug: Schema.Attribute.UID & Schema.Attribute.Required;
@@ -577,6 +614,14 @@ export interface ApiStudentDetailPageStudentDetailPage
     draftAndPublish: true;
   };
   attributes: {
+    aantalStudenten: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<1>;
     Bronnen: Schema.Attribute.Component<'component.bronnen', true>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -587,6 +632,7 @@ export interface ApiStudentDetailPageStudentDetailPage
       'api::student-detail-page.student-detail-page'
     > &
       Schema.Attribute.Private;
+    partners: Schema.Attribute.Relation<'manyToMany', 'api::partner.partner'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1108,6 +1154,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::navigation.navigation': ApiNavigationNavigation;
       'api::page.page': ApiPagePage;
+      'api::partner.partner': ApiPartnerPartner;
       'api::research-detail-page.research-detail-page': ApiResearchDetailPageResearchDetailPage;
       'api::student-detail-page.student-detail-page': ApiStudentDetailPageStudentDetailPage;
       'plugin::content-releases.release': PluginContentReleasesRelease;

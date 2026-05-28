@@ -11,10 +11,21 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "aantalStudenten": {
+      "type": "integer",
+      "default": 1,
+      "min": 1
+    },
     "Bronnen": {
       "type": "component",
       "component": "component.bronnen",
       "repeatable": true
+    },
+    "partners": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::partner.partner",
+      "mappedBy": "student_detail_page"
     }
   }
 }
