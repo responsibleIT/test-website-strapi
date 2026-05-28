@@ -24,6 +24,18 @@ export interface ComponentButtons extends Struct.ComponentSchema {
   };
 }
 
+export interface ComponentOnderwijseenheid extends Struct.ComponentSchema {
+  collectionName: 'components_component_onderwijseenheids';
+  info: {
+    displayName: 'Onderwijseenheid';
+    icon: 'write';
+  };
+  attributes: {
+    label: Schema.Attribute.String;
+    URL: Schema.Attribute.String;
+  };
+}
+
 export interface LayoutSection extends Struct.ComponentSchema {
   collectionName: 'components_layout_sections';
   info: {
@@ -55,6 +67,7 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'component.bronnen': ComponentBronnen;
       'component.buttons': ComponentButtons;
+      'component.onderwijseenheid': ComponentOnderwijseenheid;
       'layout.section': LayoutSection;
       'navigation.nav-items': NavigationNavItems;
     }

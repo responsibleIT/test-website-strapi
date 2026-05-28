@@ -107,43 +107,6 @@ export interface AdminApiTokenPermission extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface AdminAuditLog extends Struct.CollectionTypeSchema {
-  collectionName: 'strapi_audit_logs';
-  info: {
-    displayName: 'Audit Log';
-    pluralName: 'audit-logs';
-    singularName: 'audit-log';
-  };
-  options: {
-    draftAndPublish: false;
-    timestamps: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    action: Schema.Attribute.String & Schema.Attribute.Required;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    date: Schema.Attribute.DateTime & Schema.Attribute.Required;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'admin::audit-log'> &
-      Schema.Attribute.Private;
-    payload: Schema.Attribute.JSON;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    user: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
-  };
-}
-
 export interface AdminPermission extends Struct.CollectionTypeSchema {
   collectionName: 'admin_permissions';
   info: {
@@ -586,11 +549,11 @@ export interface ApiResearchDetailPageResearchDetailPage
       'api::research-detail-page.research-detail-page'
     > &
       Schema.Attribute.Private;
+    partners: Schema.Attribute.Relation<'manyToMany', 'api::partner.partner'>;
     ProjectBeschrijving: Schema.Attribute.Text;
     ProjectTitle: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
-    partners: Schema.Attribute.Relation<'manyToMany', 'api::partner.partner'>;
     publishedAt: Schema.Attribute.DateTime;
     Regeling: Schema.Attribute.String;
     Slug: Schema.Attribute.UID & Schema.Attribute.Required;
@@ -614,7 +577,8 @@ export interface ApiStudentDetailPageStudentDetailPage
     draftAndPublish: true;
   };
   attributes: {
-    aantalStudenten: Schema.Attribute.Integer &
+    AantalStudenten: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
       Schema.Attribute.SetMinMax<
         {
           min: 1;
@@ -626,14 +590,61 @@ export interface ApiStudentDetailPageStudentDetailPage
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    LesJaar: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 99;
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<26>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::student-detail-page.student-detail-page'
     > &
       Schema.Attribute.Private;
+    Niveau: Schema.Attribute.JSON &
+      Schema.Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        ['Bachelor', 'Master', 'AD']
+      > &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 1;
+          min: 1;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<'[]'>;
+    Onderwijseenheid: Schema.Attribute.Component<
+      'component.onderwijseenheid',
+      false
+    >;
     partners: Schema.Attribute.Relation<'manyToMany', 'api::partner.partner'>;
+    ProjectBeschrijving: Schema.Attribute.String;
+    ProjectTitel: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 2;
+      }>;
     publishedAt: Schema.Attribute.DateTime;
+    SchoolJaar: Schema.Attribute.JSON &
+      Schema.Attribute.Required &
+      Schema.Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        ['1', '2', '3', '4']
+      > &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 4;
+          min: 1;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<'[]'>;
+    slug: Schema.Attribute.UID<'ProjectTitel'> & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1145,7 +1156,6 @@ declare module '@strapi/strapi' {
     export interface ContentTypeSchemas {
       'admin::api-token': AdminApiToken;
       'admin::api-token-permission': AdminApiTokenPermission;
-      'admin::audit-log': AdminAuditLog;
       'admin::permission': AdminPermission;
       'admin::role': AdminRole;
       'admin::session': AdminSession;

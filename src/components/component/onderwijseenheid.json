@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_component_onderwijseenheids",
+  "info": {
+    "displayName": "Onderwijseenheid",
+    "icon": "write"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "URL": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
