@@ -499,6 +499,7 @@ export interface ApiResearchDetailPageResearchDetailPage
     draftAndPublish: true;
   };
   attributes: {
+    Bronnen: Schema.Attribute.Component<'component.bronnen', true>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -527,6 +528,7 @@ export interface ApiStudentDetailPageStudentDetailPage
     draftAndPublish: true;
   };
   attributes: {
+    Bronnen: Schema.Attribute.Component<'component.bronnen', true>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

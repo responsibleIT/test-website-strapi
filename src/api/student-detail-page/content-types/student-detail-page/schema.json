@@ -10,5 +10,11 @@
     "draftAndPublish": true
   },
   "pluginOptions": {},
-  "attributes": {}
+  "attributes": {
+    "Bronnen": {
+      "type": "component",
+      "component": "component.bronnen",
+      "repeatable": true
+    }
+  }
 }

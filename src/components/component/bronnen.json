@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_component_bronnens",
+  "info": {
+    "displayName": "Bronnen",
+    "icon": "link"
+  },
+  "options": {},
+  "attributes": {
+    "Bron": {
+      "type": "string",
+      "unique": true
+    }
+  },
+  "config": {}
+}

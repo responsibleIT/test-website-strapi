@@ -1,5 +1,16 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface ComponentBronnen extends Struct.ComponentSchema {
+  collectionName: 'components_component_bronnens';
+  info: {
+    displayName: 'Bronnen';
+    icon: 'link';
+  };
+  attributes: {
+    Bron: Schema.Attribute.String & Schema.Attribute.Unique;
+  };
+}
+
 export interface ComponentButtons extends Struct.ComponentSchema {
   collectionName: 'components_component_buttons';
   info: {
@@ -42,6 +53,7 @@ export interface NavigationNavItems extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'component.bronnen': ComponentBronnen;
       'component.buttons': ComponentButtons;
       'layout.section': LayoutSection;
       'navigation.nav-items': NavigationNavItems;
