@@ -1,0 +1,14 @@
+{
+  "kind": "collectionType",
+  "collectionName": "research_detail_pages",
+  "info": {
+    "singularName": "research-detail-page",
+    "pluralName": "research-detail-pages",
+    "displayName": "Research detail page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}
