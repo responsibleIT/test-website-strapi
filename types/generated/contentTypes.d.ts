@@ -475,7 +475,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::page.page'> &
       Schema.Attribute.Private;
-    metaDescription: Schema.Attribute.String;
+    metaDescription: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
     sections: Schema.Attribute.Component<'layout.section', true>;
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;

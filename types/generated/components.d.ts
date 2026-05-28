@@ -23,9 +23,7 @@ export interface LayoutSection extends Struct.ComponentSchema {
     buttons: Schema.Attribute.Component<'component.buttons', true>;
     heading: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images'>;
-    type: Schema.Attribute.Enumeration<
-      ['hero, ', 'text, ', 'cta, ', 'gallery']
-    >;
+    type: Schema.Attribute.Enumeration<['hero', 'text ', 'cta', 'gallery']>;
   };
 }
 

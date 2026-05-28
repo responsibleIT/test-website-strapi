@@ -8,9 +8,9 @@
     "type": {
       "type": "enumeration",
       "enum": [
-        "hero, ",
-        "text, ",
-        "cta, ",
+        "hero",
+        "text ",
+        "cta",
         "gallery"
       ]
     },
