@@ -11,10 +11,53 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "Jaar": {
+      "type": "integer"
+    },
+    "ProjectTitle": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "ProjectBeschrijving": {
+      "type": "text"
+    },
+    "Regeling": {
+      "type": "string"
+    },
     "Bronnen": {
       "type": "component",
       "component": "component.bronnen",
       "repeatable": true
+    },
+    "Url": {
+      "type": "string"
+    },
+    "Slug": {
+      "type": "uid",
+      "required": true
+    },
+    "Duur": {
+      "type": "integer"
+    },
+    "Foto": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "Audio": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "files",
+        "audios"
+      ]
+    },
+    "VideoEmbed": {
+      "type": "string"
     }
   }
 }
