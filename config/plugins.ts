@@ -3,10 +3,14 @@ export default () => ({
     config: {
       breakpoints: {
         xlarge: 1920,
-        large:  1000,
+        large: 1000,
         medium: 750,
-        small:  500,
+        small: 500,
         xsmall: 64,
+      },
+      sharp: {
+        cache: false,
+        concurrency: 1,
       },
     },
   },
