@@ -58,6 +58,12 @@
     },
     "VideoEmbed": {
       "type": "string"
+    },
+    "partners": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::partner.partner",
+      "mappedBy": "research_detail_pages"
     }
   }
 }
