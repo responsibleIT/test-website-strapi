@@ -1,0 +1,14 @@
+{
+  "kind": "collectionType",
+  "collectionName": "student_detail_pages",
+  "info": {
+    "singularName": "student-detail-page",
+    "pluralName": "student-detail-pages",
+    "displayName": "Student detail page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}
