@@ -107,6 +107,43 @@ export interface AdminApiTokenPermission extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface AdminAuditLog extends Struct.CollectionTypeSchema {
+  collectionName: 'strapi_audit_logs';
+  info: {
+    displayName: 'Audit Log';
+    pluralName: 'audit-logs';
+    singularName: 'audit-log';
+  };
+  options: {
+    draftAndPublish: false;
+    timestamps: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    action: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'admin::audit-log'> &
+      Schema.Attribute.Private;
+    payload: Schema.Attribute.JSON;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
+  };
+}
+
 export interface AdminPermission extends Struct.CollectionTypeSchema {
   collectionName: 'admin_permissions';
   info: {
@@ -555,7 +592,15 @@ export interface ApiResearchDetailPageResearchDetailPage
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
     publishedAt: Schema.Attribute.DateTime;
+    ReasearcherData: Schema.Attribute.Component<
+      'component.reasearcher-data',
+      true
+    >;
     Regeling: Schema.Attribute.String;
+    RelatedProjects: Schema.Attribute.Component<
+      'component.related-projects',
+      true
+    >;
     Slug: Schema.Attribute.UID & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -586,10 +631,13 @@ export interface ApiStudentDetailPageStudentDetailPage
         number
       > &
       Schema.Attribute.DefaultTo<1>;
+    Audio: Schema.Attribute.Media<'audios', true>;
     Bronnen: Schema.Attribute.Component<'component.bronnen', true>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    Doorlooptijd: Schema.Attribute.String;
+    Foto: Schema.Attribute.Media<'images' | 'files'>;
     LesJaar: Schema.Attribute.Integer &
       Schema.Attribute.SetMinMax<
         {
@@ -622,7 +670,7 @@ export interface ApiStudentDetailPageStudentDetailPage
       'component.onderwijseenheid',
       false
     >;
-    partners: Schema.Attribute.Relation<'manyToMany', 'api::partner.partner'>;
+    Partners: Schema.Attribute.Relation<'manyToMany', 'api::partner.partner'>;
     ProjectBeschrijving: Schema.Attribute.String;
     ProjectTitel: Schema.Attribute.String &
       Schema.Attribute.Required &
@@ -630,6 +678,10 @@ export interface ApiStudentDetailPageStudentDetailPage
         minLength: 2;
       }>;
     publishedAt: Schema.Attribute.DateTime;
+    RelatedProjects: Schema.Attribute.Component<
+      'component.related-projects',
+      true
+    >;
     SchoolJaar: Schema.Attribute.JSON &
       Schema.Attribute.Required &
       Schema.Attribute.CustomField<
@@ -648,6 +700,8 @@ export interface ApiStudentDetailPageStudentDetailPage
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    Url: Schema.Attribute.String;
+    VideoEmbed: Schema.Attribute.String;
   };
 }
 
@@ -1156,6 +1210,7 @@ declare module '@strapi/strapi' {
     export interface ContentTypeSchemas {
       'admin::api-token': AdminApiToken;
       'admin::api-token-permission': AdminApiTokenPermission;
+      'admin::audit-log': AdminAuditLog;
       'admin::permission': AdminPermission;
       'admin::role': AdminRole;
       'admin::session': AdminSession;

@@ -19,7 +19,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::student-detail-page.student-detail-page",
-      "inversedBy": "partners"
+      "inversedBy": "Partners"
     },
     "research_detail_pages": {
       "type": "relation",

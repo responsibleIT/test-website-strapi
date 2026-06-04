@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_component_reasearcher_data",
+  "info": {
+    "displayName": "ReasearcherData"
+  },
+  "options": {},
+  "attributes": {
+    "Naam": {
+      "type": "string"
+    },
+    "Email": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

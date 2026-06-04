@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_component_related_projects",
+  "info": {
+    "displayName": "RelatedProjects"
+  },
+  "options": {},
+  "attributes": {
+    "RelatedProjectName": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

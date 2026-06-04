@@ -25,6 +25,11 @@
     "Regeling": {
       "type": "string"
     },
+    "ReasearcherData": {
+      "type": "component",
+      "component": "component.reasearcher-data",
+      "repeatable": true
+    },
     "Bronnen": {
       "type": "component",
       "component": "component.bronnen",
@@ -36,6 +41,11 @@
     "Slug": {
       "type": "uid",
       "required": true
+    },
+    "RelatedProjects": {
+      "type": "component",
+      "component": "component.related-projects",
+      "repeatable": true
     },
     "Duur": {
       "type": "integer"
