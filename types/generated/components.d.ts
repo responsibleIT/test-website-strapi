@@ -47,16 +47,6 @@ export interface ComponentReasearcherData extends Struct.ComponentSchema {
   };
 }
 
-export interface ComponentRelatedProjects extends Struct.ComponentSchema {
-  collectionName: 'components_component_related_projects';
-  info: {
-    displayName: 'RelatedProjects';
-  };
-  attributes: {
-    RelatedProjectName: Schema.Attribute.String;
-  };
-}
-
 export interface LayoutSection extends Struct.ComponentSchema {
   collectionName: 'components_layout_sections';
   info: {
@@ -90,7 +80,6 @@ declare module '@strapi/strapi' {
       'component.buttons': ComponentButtons;
       'component.onderwijseenheid': ComponentOnderwijseenheid;
       'component.reasearcher-data': ComponentReasearcherData;
-      'component.related-projects': ComponentRelatedProjects;
       'layout.section': LayoutSection;
       'navigation.nav-items': NavigationNavItems;
     }

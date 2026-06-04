@@ -73,18 +73,10 @@
       "max": 1,
       "min": 1
     },
-    "Url": {
-      "type": "string"
-    },
-    "slug": {
+    "Slug": {
       "type": "uid",
       "targetField": "ProjectTitel",
       "required": true
-    },
-    "RelatedProjects": {
-      "type": "component",
-      "component": "component.related-projects",
-      "repeatable": true
     },
     "Doorlooptijd": {
       "type": "string"

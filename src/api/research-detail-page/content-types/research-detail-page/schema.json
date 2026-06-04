@@ -14,7 +14,7 @@
     "Jaar": {
       "type": "integer"
     },
-    "ProjectTitle": {
+    "ProjectTitel": {
       "type": "string",
       "required": true,
       "unique": true
@@ -35,17 +35,10 @@
       "component": "component.bronnen",
       "repeatable": true
     },
-    "Url": {
-      "type": "string"
-    },
     "Slug": {
       "type": "uid",
+      "targetField": "ProjectTitel",
       "required": true
-    },
-    "RelatedProjects": {
-      "type": "component",
-      "component": "component.related-projects",
-      "repeatable": true
     },
     "Duur": {
       "type": "integer"
@@ -74,6 +67,18 @@
       "relation": "manyToMany",
       "target": "api::partner.partner",
       "mappedBy": "research_detail_pages"
+    },
+    "research_pages": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::research-detail-page.research-detail-page",
+      "inversedBy": "research_page"
+    },
+    "research_page": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::research-detail-page.research-detail-page",
+      "mappedBy": "research_pages"
     }
   }
 }
