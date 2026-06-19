@@ -11,6 +11,13 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "P5": {
+      "type": "customField",
+      "customField": "plugin::strapi-code-editor-custom-field.code-editor-text",
+      "options": {
+        "language": "javascript"
+      }
+    },
     "LesJaar": {
       "type": "integer",
       "default": 26,
@@ -30,6 +37,19 @@
       "required": true,
       "default": 1,
       "min": 1
+    },
+    "Opleiding": {
+      "type": "customField",
+      "customField": "plugin::multi-select.multi-select",
+      "default": "[-]",
+      "options": [
+        "HBO-ICT\t",
+        "CMD\t",
+        "CO\t",
+        "CB\t",
+        "FDND\t",
+        "-"
+      ]
     },
     "SchoolJaar": {
       "type": "customField",

@@ -11,6 +11,13 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "P5": {
+      "type": "customField",
+      "customField": "plugin::strapi-code-editor-custom-field.code-editor-text",
+      "options": {
+        "language": "javascript"
+      }
+    },
     "Jaar": {
       "type": "integer"
     },
